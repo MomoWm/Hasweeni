@@ -18,6 +18,16 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+.demo-banner {
+  background: #101828;
+  color: #ffd166;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  letter-spacing: 0.02em;
+}
+
 body {
   font-family: var(--font-body);
   color: var(--dark);

@@ -18,6 +18,7 @@ Open `index.html`, use Find & Replace (Ctrl+H in most editors), and swap each of
 | `{{EMAIL}}` | info@johnsonheatingair.com |
 | `{{YEARS}}` | 15 |
 | `{{SERVICE_AREA_LIST}}` | Tulsa, Broken Arrow, Jenks, Owasso, and surrounding areas |
+| `{{YOUR_NAME}}` | your name or business name (shows in the demo watermark only) |
 
 Tip: replace `{{PHONE_RAW}}` and `{{PHONE_DISPLAY}}` FIRST and separately —
 they look similar but one is for the clickable `tel:` link and one is for display text.
@@ -59,3 +60,14 @@ owner, for free:
 ## 5. Publish it live — free, forever
 
 See `README.md` for step-by-step free hosting instructions (GitHub Pages).
+
+## 6. IMPORTANT — Don't remove the demo watermark until you're paid
+
+Near the top of `index.html` there's a `<div class="demo-banner">` block with a
+"DEMO PREVIEW — not yet published" message. **Leave this in place when you send
+the link to a prospect.** It:
+- Makes clear this is a preview, not their final live site
+- Protects you from someone taking the free build and never paying
+
+Only delete that `<div class="demo-banner">...</div>` block (and republish)
+**after** the client has actually paid.
