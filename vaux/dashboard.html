@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Vaux</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <!-- ─── SIDEBAR ─── -->
+  <aside class="dash-sidebar">
+    <div class="dash-sidebar-logo">
+      <div class="navbar-logo-icon" style="width:32px;height:32px;font-size:1rem;">⚡</div>
+      <span>Vaux</span>
+    </div>
+
+    <nav class="dash-nav">
+      <div class="dash-nav-section">
+        <div class="dash-nav-section-label">Overview</div>
+        <button class="dash-nav-item active" data-section="overview">
+          <span class="nav-icon">🏠</span> Dashboard
+        </button>
+        <button class="dash-nav-item" data-section="leads">
+          <span class="nav-icon">📞</span> Leads
+          <span class="dash-nav-badge" id="leadBadge">3</span>
+        </button>
+        <button class="dash-nav-item" data-section="bookings">
+          <span class="nav-icon">📅</span> Bookings
+        </button>
+      </div>
+
+      <div class="dash-nav-section">
+        <div class="dash-nav-section-label">Your Website</div>
+        <button class="dash-nav-item" data-section="editor">
+          <span class="nav-icon">✏️</span> Edit Website
+        </button>
+        <button class="dash-nav-item" data-section="pages">
+          <span class="nav-icon">📄</span> Pages
+        </button>
+        <button class="dash-nav-item" data-section="photos">
+          <span class="nav-icon">🖼️</span> Photos
+        </button>
+      </div>
+
+      <div class="dash-nav-section">
+        <div class="dash-nav-section-label">Growth</div>
+        <button class="dash-nav-item" data-section="seo">
+          <span class="nav-icon">🔍</span> SEO
+        </button>
+        <button class="dash-nav-item" data-section="reviews">
+          <span class="nav-icon">⭐</span> Reviews
+        </button>
+        <button class="dash-nav-item" data-section="analytics">
+          <span class="nav-icon">📊</span> Analytics
+        </button>
+      </div>
+
+      <div class="dash-nav-section">
+        <div class="dash-nav-section-label">Account</div>
+        <button class="dash-nav-item" data-section="billing">
+          <span class="nav-icon">💳</span> Plan & Billing
+        </button>
+        <button class="dash-nav-item" data-section="settings">
+          <span class="nav-icon">⚙️</span> Settings
+        </button>
+      </div>
+    </nav>
+
+    <div class="dash-sidebar-footer">
+      <div class="dash-user" id="dashUser">
+        <div class="dash-user-avatar" id="userAvatar">?</div>
+        <div class="dash-user-info">
+          <div class="dash-user-name" id="userName">Loading…</div>
+          <div class="dash-user-plan" id="userPlan">Pro Plan</div>
+        </div>
+        <span style="color:var(--text-3);font-size:0.75rem;">▾</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN ─── -->
+  <main class="dash-main">
+
+    <!-- Topbar -->
+    <div class="dash-topbar">
+      <h1 id="pageTitle">Dashboard</h1>
+      <div class="dash-topbar-actions">
+        <div class="dash-notif" title="Notifications">
+          🔔
+          <span class="notif-dot"></span>
+        </div>
+        <a href="#" id="viewSiteBtn" class="btn btn-outline btn-sm" target="_blank">🌐 View My Site</a>
+        <button class="btn btn-primary btn-sm" id="publishBtn">⚡ Publish Changes</button>
+      </div>
+    </div>
+
+    <div class="dash-content">
+
+      <!-- ── OVERVIEW ── -->
+      <div class="dash-section active" id="section-overview">
+        <!-- Welcome banner -->
+        <div style="background:linear-gradient(135deg,#1D40AF,#1E3A8A);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+          <div>
+            <p style="font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:4px;">Welcome back 👋</p>
+            <h2 style="color:#fff;font-size:1.4rem;margin-bottom:4px;" id="welcomeName">Loading…</h2>
+            <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;margin:0;">Your site is live and generating leads.</p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-sm" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.2);" onclick="switchSection('leads')">View Leads</button>
+            <button class="btn btn-sm" style="background:#fff;color:#1D40AF;" onclick="switchSection('editor')">Edit Website</button>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">New Leads (30d)</div>
+            <div class="stat-value">24</div>
+            <div class="stat-change up">↑ 18% vs last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Website Visitors</div>
+            <div class="stat-value">1,847</div>
+            <div class="stat-change up">↑ 32% vs last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Bookings Made</div>
+            <div class="stat-value">11</div>
+            <div class="stat-change up">↑ 22% vs last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Avg. Google Rank</div>
+            <div class="stat-value">#3</div>
+            <div class="stat-change up">↑ 5 spots this month</div>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <!-- Recent leads -->
+          <div class="widget">
+            <div class="widget-header">
+              <span class="widget-title">Recent Leads</span>
+              <span class="widget-action" onclick="switchSection('leads')">View all →</span>
+            </div>
+            <table class="leads-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Service</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Sarah M.</strong><br><span style="font-size:0.78rem;color:var(--text-3);">(214) 555-2841</span></td>
+                  <td>AC Not Cooling</td>
+                  <td>Today, 9:14 AM</td>
+                  <td><span class="lead-status new">● New</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Robert Chen</strong><br><span style="font-size:0.78rem;color:var(--text-3);">(972) 555-8810</span></td>
+                  <td>Annual Tune-Up</td>
+                  <td>Today, 7:52 AM</td>
+                  <td><span class="lead-status new">● New</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Lisa Patel</strong><br><span style="font-size:0.78rem;color:var(--text-3);">(469) 555-0033</span></td>
+                  <td>Furnace Repair</td>
+                  <td>Yesterday, 4:30 PM</td>
+                  <td><span class="lead-status contacted">● Contacted</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Tom Garcia</strong><br><span style="font-size:0.78rem;color:var(--text-3);">(817) 555-9912</span></td>
+                  <td>New AC Install</td>
+                  <td>Jun 29, 11:05 AM</td>
+                  <td><span class="lead-status booked">● Booked</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Angela W.</strong><br><span style="font-size:0.78rem;color:var(--text-3);">(214) 555-4477</span></td>
+                  <td>Emergency AC</td>
+                  <td>Jun 28, 2:18 PM</td>
+                  <td><span class="lead-status booked">● Booked</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Quick actions -->
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <div class="widget">
+              <div class="widget-header">
+                <span class="widget-title">Quick Actions</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <button class="btn btn-outline btn-full" style="justify-content:flex-start;" onclick="switchSection('editor')">✏️ &nbsp; Edit my website</button>
+                <button class="btn btn-outline btn-full" style="justify-content:flex-start;" onclick="switchSection('photos')">🖼️ &nbsp; Upload photos</button>
+                <button class="btn btn-outline btn-full" style="justify-content:flex-start;" onclick="switchSection('seo')">🔍 &nbsp; Improve my SEO</button>
+                <button class="btn btn-outline btn-full" style="justify-content:flex-start;" onclick="switchSection('reviews')">⭐ &nbsp; Manage reviews</button>
+              </div>
+            </div>
+
+            <div class="widget">
+              <div class="widget-header">
+                <span class="widget-title">Site Health</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:0.85rem;color:var(--text-2);">Google Speed Score</span>
+                  <span class="badge badge-green" style="font-size:0.75rem;">94/100</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:0.85rem;color:var(--text-2);">SEO Score</span>
+                  <span class="badge badge-green" style="font-size:0.75rem;">87/100</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:0.85rem;color:var(--text-2);">Mobile Friendly</span>
+                  <span class="badge badge-green" style="font-size:0.75rem;">✓ Yes</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:0.85rem;color:var(--text-2);">SSL Certificate</span>
+                  <span class="badge badge-green" style="font-size:0.75rem;">🔒 Active</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:0.85rem;color:var(--text-2);">Last Published</span>
+                  <span style="font-size:0.82rem;color:var(--text-3);">Today, 8:30 AM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── LEADS ── -->
+      <div class="dash-section" id="section-leads">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+          <div>
+            <h2 style="margin-bottom:4px;">All Leads</h2>
+            <p style="font-size:0.9rem;">Every inquiry from your website, in one place.</p>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <select class="form-select" style="width:auto;padding:8px 30px 8px 12px;font-size:0.85rem;">
+              <option>All Statuses</option>
+              <option>New</option>
+              <option>Contacted</option>
+              <option>Booked</option>
+            </select>
+            <button class="btn btn-primary btn-sm">Export CSV</button>
+          </div>
+        </div>
+        <div class="widget" style="padding:0;overflow:hidden;">
+          <table class="leads-table">
+            <thead>
+              <tr>
+                <th>Contact</th>
+                <th>Service Requested</th>
+                <th>Source</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sarah Mitchell</strong><br><span style="font-size:0.78rem;color:var(--text-3);">(214) 555-2841 · sarah@email.com</span></td>
+                <td>AC Not Cooling</td>
+                <td>Website Form</td>
+                <td>Today, 9:14 AM</td>
+                <td><span class="lead-status new">● New</span></td>
+                <td><button class="btn btn-sm btn-primary" style="font-size:0.75rem;">Call Now</button></td>
+              </tr>
+              <tr>
+                <td><strong>Robert Chen</strong><br><span style="font-size:0.78rem;color:var(--text-3);">(972) 555-8810 · rob.c@email.com</span></td>
+                <td>Annual Tune-Up</td>
+                <td>Book Online</td>
+                <td>Today, 7:52 AM</td>
+                <td><span class="lead-status new">● New</span></td>
+                <td><button class="btn btn-sm btn-primary" style="font-size:0.75rem;">Call Now</button></td>
+              </tr>
+              <tr>
+                <td><strong>Lisa Patel</strong><br><span style="font-size:0.78rem;color:var(--text-3);">(469) 555-0033 · l.patel@email.com</span></td>
+                <td>Furnace Repair</td>
+                <td>Website Form</td>
+                <td>Yesterday, 4:30 PM</td>
+                <td><span class="lead-status contacted">● Contacted</span></td>
+                <td><button class="btn btn-sm btn-ghost" style="font-size:0.75rem;">Mark Booked</button></td>
+              </tr>
+              <tr>
+                <td><strong>Tom Garcia</strong><br><span style="font-size:0.78rem;color:var(--text-3);">(817) 555-9912 · tgarcia@email.com</span></td>
+                <td>New AC Install</td>
+                <td>Website Form</td>
+                <td>Jun 29, 11:05 AM</td>
+                <td><span class="lead-status booked">● Booked</span></td>
+                <td><button class="btn btn-sm btn-ghost" style="font-size:0.75rem;">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Angela Williams</strong><br><span style="font-size:0.78rem;color:var(--text-3);">(214) 555-4477 · a.williams@email.com</span></td>
+                <td>Emergency AC</td>
+                <td>Book Online</td>
+                <td>Jun 28, 2:18 PM</td>
+                <td><span class="lead-status booked">● Booked</span></td>
+                <td><button class="btn btn-sm btn-ghost" style="font-size:0.75rem;">View</button></td>
+              </tr>
+              <tr>
+                <td><strong>Kevin Nguyen</strong><br><span style="font-size:0.78rem;color:var(--text-3);">(972) 555-7701 · knguy@email.com</span></td>
+                <td>Duct Cleaning</td>
+                <td>Website Form</td>
+                <td>Jun 27, 10:40 AM</td>
+                <td><span class="lead-status contacted">● Contacted</span></td>
+                <td><button class="btn btn-sm btn-ghost" style="font-size:0.75rem;">Mark Booked</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── BOOKINGS ── -->
+      <div class="dash-section" id="section-bookings">
+        <h2 style="margin-bottom:8px;">Bookings</h2>
+        <p style="margin-bottom:24px;">Upcoming appointments booked through your website.</p>
+        <div class="widget">
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="padding:16px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+              <div>
+                <div style="font-weight:600;margin-bottom:4px;">Tom Garcia — New AC Installation</div>
+                <div style="font-size:0.82rem;color:var(--text-3);">📅 Jul 2, 2025 at 9:00 AM · 3 hours</div>
+                <div style="font-size:0.82rem;color:var(--text-3);">📍 1234 Oak Lane, Dallas TX</div>
+              </div>
+              <span class="badge badge-green">Confirmed</span>
+            </div>
+            <div style="padding:16px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+              <div>
+                <div style="font-weight:600;margin-bottom:4px;">Angela Williams — Emergency AC Repair</div>
+                <div style="font-size:0.82rem;color:var(--text-3);">📅 Jul 3, 2025 at 1:00 PM · 2 hours</div>
+                <div style="font-size:0.82rem;color:var(--text-3);">📍 5678 Maple Ave, Dallas TX</div>
+              </div>
+              <span class="badge badge-green">Confirmed</span>
+            </div>
+            <div style="padding:16px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+              <div>
+                <div style="font-weight:600;margin-bottom:4px;">Robert Chen — Annual AC Tune-Up</div>
+                <div style="font-size:0.82rem;color:var(--text-3);">📅 Jul 5, 2025 at 11:00 AM · 1 hour</div>
+                <div style="font-size:0.82rem;color:var(--text-3);">📍 901 Elm Street, Plano TX</div>
+              </div>
+              <span class="badge" style="background:rgba(245,158,11,0.1);color:var(--accent);border-color:rgba(245,158,11,0.2);">Pending Confirm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEBSITE EDITOR ── -->
+      <div class="dash-section" id="section-editor">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+          <div>
+            <h2 style="margin-bottom:4px;">Edit Your Website</h2>
+            <p style="font-size:0.9rem;">Changes are saved automatically. Click "Publish Changes" to go live.</p>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-outline btn-sm" id="previewDesktopBtn">🖥 Desktop</button>
+            <button class="btn btn-outline btn-sm" id="previewMobileBtn">📱 Mobile</button>
+            <button class="btn btn-primary btn-sm">⚡ Publish</button>
+          </div>
+        </div>
+
+        <div class="editor-wrap">
+          <!-- Left Panel: editing controls -->
+          <div class="editor-panel">
+            <div class="editor-panel-header">Website Content</div>
+
+            <div class="editor-section">
+              <div class="editor-section-title">Business Info <span>▾</span></div>
+              <div class="editor-field">
+                <label>Company Name</label>
+                <input type="text" id="edCompany" value="" placeholder="Your HVAC Company">
+              </div>
+              <div class="editor-field">
+                <label>Tagline</label>
+                <input type="text" id="edTagline" value="Trusted HVAC Experts · Licensed & Insured">
+              </div>
+              <div class="editor-field">
+                <label>Phone Number</label>
+                <input type="tel" id="edPhone" value="" placeholder="(555) 000-0000">
+              </div>
+              <div class="editor-field">
+                <label>City, State</label>
+                <input type="text" id="edCity" value="" placeholder="Dallas, TX">
+              </div>
+            </div>
+
+            <div class="editor-section">
+              <div class="editor-section-title">Hero Section <span>▾</span></div>
+              <div class="editor-field">
+                <label>Headline</label>
+                <textarea id="edHeadline" rows="2">Dallas's Most Trusted HVAC Company</textarea>
+              </div>
+              <div class="editor-field">
+                <label>Sub-headline</label>
+                <textarea id="edSubhead" rows="2">Fast, reliable heating & cooling service. Available 24/7 for emergencies.</textarea>
+              </div>
+              <div class="editor-field">
+                <label>CTA Button Text</label>
+                <input type="text" id="edCta" value="Call Us Now">
+              </div>
+            </div>
+
+            <div class="editor-section">
+              <div class="editor-section-title">Services <span>▾</span></div>
+              <div class="editor-field">
+                <label>Service 1</label>
+                <input type="text" id="edSvc1" value="AC Repair & Installation">
+              </div>
+              <div class="editor-field">
+                <label>Service 2</label>
+                <input type="text" id="edSvc2" value="Heating & Furnace">
+              </div>
+              <div class="editor-field">
+                <label>Service 3</label>
+                <input type="text" id="edSvc3" value="Maintenance Plans">
+              </div>
+              <div class="editor-field">
+                <label>Service 4</label>
+                <input type="text" id="edSvc4" value="Emergency Service">
+              </div>
+              <div class="editor-field">
+                <label>Service 5</label>
+                <input type="text" id="edSvc5" value="Duct Cleaning">
+              </div>
+              <div class="editor-field">
+                <label>Service 6</label>
+                <input type="text" id="edSvc6" value="Indoor Air Quality">
+              </div>
+            </div>
+
+            <div class="editor-section">
+              <div class="editor-section-title">Color Theme <span>▾</span></div>
+              <div class="color-row">
+                <div class="color-swatch selected" style="background:#2563EB;" data-color="#2563EB" title="Blue"></div>
+                <div class="color-swatch" style="background:#16A34A;" data-color="#16A34A" title="Green"></div>
+                <div class="color-swatch" style="background:#DC2626;" data-color="#DC2626" title="Red"></div>
+                <div class="color-swatch" style="background:#D97706;" data-color="#D97706" title="Amber"></div>
+                <div class="color-swatch" style="background:#7C3AED;" data-color="#7C3AED" title="Purple"></div>
+                <div class="color-swatch" style="background:#0E7490;" data-color="#0E7490" title="Teal"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Live preview -->
+          <div class="editor-preview" id="editorPreview">
+            <div class="preview-topbar">
+              <div class="mockup-dots"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+              <div class="preview-url" id="previewUrl">🔒 your-company.vaux.site</div>
+              <div class="preview-actions">
+                <button class="btn btn-ghost btn-sm" onclick="window.open(window.location.href)">↗</button>
+              </div>
+            </div>
+            <div class="preview-site" id="previewSite">
+              <!-- Rendered site preview -->
+              <div class="ws-nav" id="wsNav">
+                <div class="ws-nav-logo" id="wsLogoText">Your HVAC Co</div>
+                <div class="ws-nav-phone" id="wsNavPhone">📞 Call Now</div>
+              </div>
+              <div class="ws-hero" id="wsHero">
+                <h1 id="wsHeadline">Dallas's Most Trusted HVAC Company</h1>
+                <p id="wsSubhead">Fast, reliable heating & cooling service. Available 24/7 for emergencies.</p>
+                <div class="ws-hero-btns">
+                  <div class="ws-btn ws-btn-blue" id="wsCtaBtn">Call Us Now</div>
+                  <div class="ws-btn ws-btn-outline">Book Online</div>
+                </div>
+              </div>
+              <div class="ws-services">
+                <h2>Our Services</h2>
+                <div class="ws-services-grid">
+                  <div class="ws-service"><div class="ws-service-icon">❄️</div><div class="ws-service-name" id="wsSvc1">AC Repair & Installation</div></div>
+                  <div class="ws-service"><div class="ws-service-icon">🔥</div><div class="ws-service-name" id="wsSvc2">Heating & Furnace</div></div>
+                  <div class="ws-service"><div class="ws-service-icon">🔧</div><div class="ws-service-name" id="wsSvc3">Maintenance Plans</div></div>
+                  <div class="ws-service"><div class="ws-service-icon">🚨</div><div class="ws-service-name" id="wsSvc4">Emergency Service</div></div>
+                  <div class="ws-service"><div class="ws-service-icon">💨</div><div class="ws-service-name" id="wsSvc5">Duct Cleaning</div></div>
+                  <div class="ws-service"><div class="ws-service-icon">🌿</div><div class="ws-service-name" id="wsSvc6">Indoor Air Quality</div></div>
+                </div>
+              </div>
+              <div class="ws-contact">
+                <h2>Contact Us</h2>
+                <div class="ws-contact-grid">
+                  <div class="ws-contact-info">
+                    <p><strong id="wsContactCompany">Your HVAC Co</strong></p>
+                    <p id="wsContactCity">Dallas, TX</p>
+                    <p id="wsContactPhone" style="color:#60a5fa;font-weight:600;">📞 (555) 000-0000</p>
+                    <p style="margin-top:8px;font-size:0.75rem;">Mon–Fri: 7AM–7PM<br>Sat: 8AM–5PM<br>24/7 Emergency</p>
+                  </div>
+                  <div class="ws-form">
+                    <input type="text" placeholder="Your Name">
+                    <input type="text" placeholder="Phone Number">
+                    <textarea placeholder="What do you need?"></textarea>
+                    <button class="ws-form-btn">Send Message</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PAGES ── -->
+      <div class="dash-section" id="section-pages">
+        <h2 style="margin-bottom:8px;">Pages</h2>
+        <p style="margin-bottom:24px;">Manage the pages on your website.</p>
+        <div class="widget">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+              <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:1.1rem;">🏠</span><div><div style="font-weight:600;font-size:0.9rem;">Home</div><div style="font-size:0.78rem;color:var(--text-3);">/ (homepage)</div></div></div>
+              <div style="display:flex;gap:6px;"><span class="badge badge-green" style="font-size:0.7rem;">Live</span><button class="btn btn-ghost btn-sm" onclick="switchSection('editor')">Edit</button></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+              <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:1.1rem;">ℹ️</span><div><div style="font-weight:600;font-size:0.9rem;">About Us</div><div style="font-size:0.78rem;color:var(--text-3);">/about</div></div></div>
+              <div style="display:flex;gap:6px;"><span class="badge badge-green" style="font-size:0.7rem;">Live</span><button class="btn btn-ghost btn-sm">Edit</button></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+              <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:1.1rem;">🔧</span><div><div style="font-weight:600;font-size:0.9rem;">Services</div><div style="font-size:0.78rem;color:var(--text-3);">/services</div></div></div>
+              <div style="display:flex;gap:6px;"><span class="badge badge-green" style="font-size:0.7rem;">Live</span><button class="btn btn-ghost btn-sm">Edit</button></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+              <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:1.1rem;">🖼️</span><div><div style="font-weight:600;font-size:0.9rem;">Gallery</div><div style="font-size:0.78rem;color:var(--text-3);">/gallery</div></div></div>
+              <div style="display:flex;gap:6px;"><span class="badge badge-green" style="font-size:0.7rem;">Live</span><button class="btn btn-ghost btn-sm">Edit</button></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+              <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:1.1rem;">📞</span><div><div style="font-weight:600;font-size:0.9rem;">Contact</div><div style="font-size:0.78rem;color:var(--text-3);">/contact</div></div></div>
+              <div style="display:flex;gap:6px;"><span class="badge badge-green" style="font-size:0.7rem;">Live</span><button class="btn btn-ghost btn-sm">Edit</button></div>
+            </div>
+          </div>
+          <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+            <button class="btn btn-outline btn-sm">+ Add New Page</button>
+            <span style="font-size:0.8rem;color:var(--text-3);margin-left:10px;">Pro plan: up to 5 pages · <a href="#" style="color:var(--primary);">Upgrade for unlimited</a></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PHOTOS ── -->
+      <div class="dash-section" id="section-photos">
+        <h2 style="margin-bottom:8px;">Photos</h2>
+        <p style="margin-bottom:24px;">Upload photos of your work, team, and equipment to build trust with visitors.</p>
+        <div class="widget" style="padding:40px;text-align:center;border-style:dashed;cursor:pointer;" id="photoUploadZone">
+          <div style="font-size:2.5rem;margin-bottom:12px;">📸</div>
+          <h3 style="margin-bottom:8px;">Upload Your Photos</h3>
+          <p style="margin-bottom:20px;font-size:0.9rem;">Drag & drop photos here, or click to browse. JPG, PNG up to 10MB each.</p>
+          <button class="btn btn-primary">Choose Photos</button>
+          <p style="margin-top:12px;font-size:0.8rem;color:var(--text-3);">Pro plan: up to 50 photos · Elite: unlimited</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;" id="photoGrid">
+          <div style="aspect-ratio:1;background:linear-gradient(135deg,#1D40AF,#1E3A8A);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:1px solid var(--border);">❄️</div>
+          <div style="aspect-ratio:1;background:linear-gradient(135deg,#7C2D12,#92400E);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:1px solid var(--border);">🔥</div>
+          <div style="aspect-ratio:1;background:linear-gradient(135deg,#064E3B,#065F46);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:1px solid var(--border);">🔧</div>
+        </div>
+      </div>
+
+      <!-- ── SEO ── -->
+      <div class="dash-section" id="section-seo">
+        <h2 style="margin-bottom:8px;">SEO</h2>
+        <p style="margin-bottom:24px;">Your website's search engine visibility and ranking factors.</p>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-label">Overall SEO Score</div><div class="stat-value">87<span style="font-size:1rem;color:var(--text-3)">/100</span></div><div class="stat-change up">↑ 12 pts this month</div></div>
+          <div class="stat-card"><div class="stat-label">Google Ranking</div><div class="stat-value">#3</div><div class="stat-change up">"HVAC near me"</div></div>
+          <div class="stat-card"><div class="stat-label">Keywords Tracked</div><div class="stat-value">24</div><div class="stat-change up">↑ 8 in top 10</div></div>
+          <div class="stat-card"><div class="stat-label">Backlinks</div><div class="stat-value">41</div><div class="stat-change up">↑ 5 this month</div></div>
+        </div>
+        <div class="widget" style="margin-top:24px;">
+          <div class="widget-header"><span class="widget-title">SEO Checklist</span></div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);"><span style="font-size:0.9rem;">✅ Business name, address, and phone on every page</span><span class="badge badge-green">Done</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);"><span style="font-size:0.9rem;">✅ Google Maps embedded on contact page</span><span class="badge badge-green">Done</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);"><span style="font-size:0.9rem;">✅ Mobile-friendly design (passes Google test)</span><span class="badge badge-green">Done</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);"><span style="font-size:0.9rem;">⚠️ Add more customer reviews to your website</span><span class="badge badge-amber">Action Needed</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);"><span style="font-size:0.9rem;">⚠️ Upload at least 5 project photos</span><span class="badge badge-amber">Action Needed</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--surface-2);border-radius:var(--radius-sm);"><span style="font-size:0.9rem;">✅ Page speed score above 85</span><span class="badge badge-green">94/100</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── REVIEWS ── -->
+      <div class="dash-section" id="section-reviews">
+        <h2 style="margin-bottom:8px;">Reviews</h2>
+        <p style="margin-bottom:24px;">Reviews displayed on your website build trust and improve your Google ranking.</p>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-label">Avg. Rating</div><div class="stat-value">4.9 ⭐</div><div class="stat-change up">Excellent</div></div>
+          <div class="stat-card"><div class="stat-label">Total Reviews</div><div class="stat-value">127</div><div class="stat-change up">↑ 8 this month</div></div>
+          <div class="stat-card"><div class="stat-label">Shown on Site</div><div class="stat-value">12</div></div>
+          <div class="stat-card"><div class="stat-label">Review Requests</div><div class="stat-value">42</div><div class="stat-change up">Sent this month</div></div>
+        </div>
+        <div class="widget" style="margin-top:24px;">
+          <div class="widget-header"><span class="widget-title">Recent Reviews</span><span class="widget-action">Send Review Request</span></div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="padding:16px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div><div style="font-weight:600;font-size:0.9rem;">Sarah M.</div><div style="font-size:0.75rem;color:var(--text-3);">Jun 30, 2025 · Google</div></div><span style="color:var(--accent);">★★★★★</span></div>
+              <p style="font-size:0.85rem;font-style:italic;">"Amazing service! They came out same day for my broken AC. Very professional and reasonably priced. Will use again!"</p>
+            </div>
+            <div style="padding:16px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div><div style="font-weight:600;font-size:0.9rem;">Tom G.</div><div style="font-size:0.75rem;color:var(--text-3);">Jun 28, 2025 · Google</div></div><span style="color:var(--accent);">★★★★★</span></div>
+              <p style="font-size:0.85rem;font-style:italic;">"Installed our new AC unit perfectly. Clean, fast, honest pricing. Highly recommend to anyone in the area!"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ANALYTICS ── -->
+      <div class="dash-section" id="section-analytics">
+        <h2 style="margin-bottom:8px;">Analytics</h2>
+        <p style="margin-bottom:24px;">How visitors find and use your website.</p>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-label">Visitors (30d)</div><div class="stat-value">1,847</div><div class="stat-change up">↑ 32%</div></div>
+          <div class="stat-card"><div class="stat-label">Page Views</div><div class="stat-value">5,213</div><div class="stat-change up">↑ 28%</div></div>
+          <div class="stat-card"><div class="stat-label">Lead Conversion</div><div class="stat-value">3.8%</div><div class="stat-change up">↑ 0.6%</div></div>
+          <div class="stat-card"><div class="stat-label">Avg. Time on Site</div><div class="stat-value">2:14</div><div class="stat-change up">↑ 18s</div></div>
+        </div>
+        <div class="widget" style="margin-top:24px;">
+          <div class="widget-header"><span class="widget-title">Traffic Sources</span></div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.88rem;">🔍 Google Search</span>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:140px;height:8px;background:var(--surface-3);border-radius:99px;overflow:hidden;"><div style="width:68%;height:100%;background:var(--primary);border-radius:99px;"></div></div>
+                <span style="font-size:0.85rem;font-weight:600;color:var(--text);width:36px;text-align:right;">68%</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.88rem;">📍 Google Maps</span>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:140px;height:8px;background:var(--surface-3);border-radius:99px;overflow:hidden;"><div style="width:18%;height:100%;background:var(--accent);border-radius:99px;"></div></div>
+                <span style="font-size:0.85rem;font-weight:600;color:var(--text);width:36px;text-align:right;">18%</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.88rem;">💬 Direct / Referral</span>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:140px;height:8px;background:var(--surface-3);border-radius:99px;overflow:hidden;"><div style="width:9%;height:100%;background:var(--green);border-radius:99px;"></div></div>
+                <span style="font-size:0.85rem;font-weight:600;color:var(--text);width:36px;text-align:right;">9%</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.88rem;">📱 Social Media</span>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:140px;height:8px;background:var(--surface-3);border-radius:99px;overflow:hidden;"><div style="width:5%;height:100%;background:#A78BFA;border-radius:99px;"></div></div>
+                <span style="font-size:0.85rem;font-weight:600;color:var(--text);width:36px;text-align:right;">5%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── BILLING ── -->
+      <div class="dash-section" id="section-billing">
+        <h2 style="margin-bottom:8px;">Plan & Billing</h2>
+        <p style="margin-bottom:24px;">Manage your subscription and payment details.</p>
+        <div class="dash-grid">
+          <div class="widget">
+            <div class="widget-header"><span class="widget-title">Current Plan</span></div>
+            <div style="padding:20px;background:linear-gradient(135deg,rgba(59,130,246,0.08),var(--surface-2));border:1px solid rgba(59,130,246,0.2);border-radius:var(--radius);margin-bottom:20px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+                <div><div style="font-size:0.8rem;color:var(--text-3);margin-bottom:4px;">ACTIVE PLAN</div><div style="font-size:1.5rem;font-weight:800;" id="billingPlanName">Pro</div></div>
+                <span class="badge badge-green">Active</span>
+              </div>
+              <div style="font-size:1.8rem;font-weight:800;color:var(--text);margin-bottom:4px;" id="billingPrice">$129<span style="font-size:1rem;font-weight:400;color:var(--text-3)">/month</span></div>
+              <div style="font-size:0.82rem;color:var(--text-3);">Next billing date: August 1, 2025</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <button class="btn btn-primary">Upgrade to Elite</button>
+              <button class="btn btn-outline">Change Plan</button>
+              <button class="btn btn-ghost" style="color:var(--red);">Cancel Subscription</button>
+            </div>
+          </div>
+          <div class="widget">
+            <div class="widget-header"><span class="widget-title">Payment Method</span></div>
+            <div style="padding:16px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+              <div style="font-size:1.5rem;">💳</div>
+              <div><div style="font-weight:600;font-size:0.9rem;">Visa ending in 4242</div><div style="font-size:0.78rem;color:var(--text-3);">Expires 12/27</div></div>
+              <button class="btn btn-ghost btn-sm" style="margin-left:auto;">Update</button>
+            </div>
+            <div class="widget-header" style="margin-top:20px;"><span class="widget-title">Billing History</span></div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;border-bottom:1px solid var(--border);"><span style="color:var(--text-2);">Jul 1, 2025</span><span>$129.00</span><span class="badge badge-green" style="font-size:0.7rem;">Paid</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;border-bottom:1px solid var(--border);"><span style="color:var(--text-2);">Jun 1, 2025</span><span>$129.00</span><span class="badge badge-green" style="font-size:0.7rem;">Paid</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;"><span style="color:var(--text-2);">May 1, 2025</span><span>$129.00</span><span class="badge badge-green" style="font-size:0.7rem;">Paid</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SETTINGS ── -->
+      <div class="dash-section" id="section-settings">
+        <h2 style="margin-bottom:8px;">Settings</h2>
+        <p style="margin-bottom:24px;">Manage your account preferences.</p>
+        <div class="dash-grid">
+          <div class="widget">
+            <div class="widget-header"><span class="widget-title">Account Information</span></div>
+            <div class="auth-form" style="gap:16px;">
+              <div class="auth-form-row">
+                <div class="form-group">
+                  <label class="form-label">First Name</label>
+                  <input class="form-input" type="text" id="settingFirst">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Last Name</label>
+                  <input class="form-input" type="text" id="settingLast">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input class="form-input" type="email" id="settingEmail">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Company Name</label>
+                <input class="form-input" type="text" id="settingCompany">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input class="form-input" type="tel" id="settingPhone">
+              </div>
+              <button class="btn btn-primary">Save Changes</button>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <div class="widget">
+              <div class="widget-header"><span class="widget-title">Notifications</span></div>
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <label style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;">
+                  <span style="font-size:0.88rem;">New lead email alerts</span>
+                  <input type="checkbox" checked style="accent-color:var(--primary);width:16px;height:16px;">
+                </label>
+                <label style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;">
+                  <span style="font-size:0.88rem;">New booking notifications</span>
+                  <input type="checkbox" checked style="accent-color:var(--primary);width:16px;height:16px;">
+                </label>
+                <label style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;">
+                  <span style="font-size:0.88rem;">Monthly performance report</span>
+                  <input type="checkbox" checked style="accent-color:var(--primary);width:16px;height:16px;">
+                </label>
+                <label style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;">
+                  <span style="font-size:0.88rem;">Weekly SEO updates</span>
+                  <input type="checkbox" style="accent-color:var(--primary);width:16px;height:16px;">
+                </label>
+              </div>
+            </div>
+            <div class="widget">
+              <div class="widget-header"><span class="widget-title">Danger Zone</span></div>
+              <button class="btn btn-outline btn-full" style="color:var(--red);border-color:rgba(239,68,68,0.3);" id="logoutBtn">Sign Out of Vaux</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.dash-content -->
+  </main>
+</div><!-- /.dash-layout -->
+
+<!-- Publish toast -->
+<div id="publishToast" style="position:fixed;bottom:24px;right:24px;background:var(--green);color:#fff;padding:14px 20px;border-radius:var(--radius);box-shadow:var(--shadow);font-weight:600;font-size:0.9rem;transform:translateY(80px);opacity:0;transition:all 0.35s;z-index:999;">
+  ⚡ Changes published successfully!
+</div>
+
+<script src="app.js"></script>
+<script>
+// ── Auth guard ──
+const user = JSON.parse(localStorage.getItem('vauxUser') || 'null');
+if (!user) window.location.href = 'signin.html';
+
+// ── Populate user info ──
+function getInitials(name) {
+  return name ? name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2) : '?';
+}
+const initials = getInitials(user?.name || user?.firstName || 'U');
+document.getElementById('userAvatar').textContent = initials;
+document.getElementById('userName').textContent = user?.name || (user?.firstName + ' ' + (user?.lastName||'')).trim() || user?.email;
+const planNames = { starter: 'Starter Plan', pro: 'Pro Plan', elite: 'Elite Plan' };
+document.getElementById('userPlan').textContent = planNames[user?.plan] || 'Pro Plan';
+
+const company = user?.company || 'My HVAC Company';
+const firstName = user?.firstName || user?.name?.split(' ')[0] || 'there';
+document.getElementById('welcomeName').textContent = 'Welcome back, ' + firstName + ' 👋';
+
+// Editor defaults
+document.getElementById('edCompany').value = company;
+document.getElementById('edPhone').value = user?.phone || '';
+document.getElementById('wsLogoText').textContent = company;
+document.getElementById('wsNavPhone').textContent = '📞 ' + (user?.phone || 'Call Now');
+document.getElementById('wsContactCompany').textContent = company;
+document.getElementById('wsContactPhone').textContent = '📞 ' + (user?.phone || '(555) 000-0000');
+document.getElementById('previewUrl').textContent = '🔒 ' + company.toLowerCase().replace(/[^a-z0-9]/g,'-') + '.vaux.site';
+
+// View site link
+document.getElementById('viewSiteBtn').href = '#section-editor';
+
+// Settings fields
+if (document.getElementById('settingFirst')) {
+  document.getElementById('settingFirst').value = user?.firstName || '';
+  document.getElementById('settingLast').value  = user?.lastName  || '';
+  document.getElementById('settingEmail').value = user?.email || '';
+  document.getElementById('settingCompany').value = user?.company || '';
+  document.getElementById('settingPhone').value  = user?.phone || '';
+}
+
+// Billing plan display
+const planPrices = { starter: '$49', pro: '$129', elite: '$299' };
+const planLabels  = { starter: 'Starter', pro: 'Pro', elite: 'Elite' };
+if (document.getElementById('billingPlanName')) {
+  document.getElementById('billingPlanName').textContent = planLabels[user?.plan] || 'Pro';
+  document.getElementById('billingPrice').innerHTML = (planPrices[user?.plan] || '$129') + '<span style="font-size:1rem;font-weight:400;color:var(--text-3)">/month</span>';
+}
+
+// ── Navigation ──
+function switchSection(name) {
+  document.querySelectorAll('.dash-section').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.dash-nav-item').forEach(el => el.classList.remove('active'));
+  const section = document.getElementById('section-' + name);
+  if (section) section.classList.add('active');
+  const navBtn = document.querySelector('[data-section="' + name + '"]');
+  if (navBtn) navBtn.classList.add('active');
+  const titles = { overview:'Dashboard',leads:'Leads',bookings:'Bookings',editor:'Edit Website',pages:'Pages',photos:'Photos',seo:'SEO',reviews:'Reviews',analytics:'Analytics',billing:'Plan & Billing',settings:'Settings' };
+  document.getElementById('pageTitle').textContent = titles[name] || name;
+  // Clear lead badge when viewing leads
+  if (name === 'leads') document.getElementById('leadBadge').style.display = 'none';
+}
+document.querySelectorAll('.dash-nav-item').forEach(btn => {
+  btn.addEventListener('click', () => switchSection(btn.dataset.section));
+});
+
+// ── Live editor preview ──
+function bindPreview(inputId, targetId) {
+  const input = document.getElementById(inputId);
+  const target = document.getElementById(targetId);
+  if (!input || !target) return;
+  input.addEventListener('input', () => { target.textContent = input.value || target.dataset.placeholder || ''; });
+}
+bindPreview('edCompany',  'wsLogoText');
+bindPreview('edCompany',  'wsContactCompany');
+bindPreview('edTagline',  'wsNavPhone');
+bindPreview('edPhone',    'wsContactPhone');
+bindPreview('edCity',     'wsContactCity');
+bindPreview('edHeadline', 'wsHeadline');
+bindPreview('edSubhead',  'wsSubhead');
+bindPreview('edCta',      'wsCtaBtn');
+bindPreview('edSvc1', 'wsSvc1'); bindPreview('edSvc2', 'wsSvc2');
+bindPreview('edSvc3', 'wsSvc3'); bindPreview('edSvc4', 'wsSvc4');
+bindPreview('edSvc5', 'wsSvc5'); bindPreview('edSvc6', 'wsSvc6');
+
+// Color swatches
+document.querySelectorAll('.color-swatch').forEach(swatch => {
+  swatch.addEventListener('click', () => {
+    document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+    swatch.classList.add('selected');
+    const color = swatch.dataset.color;
+    document.getElementById('wsHero').style.background = 'linear-gradient(135deg, ' + color + '44, ' + color + '22)';
+    document.querySelectorAll('.ws-btn-blue').forEach(b => b.style.background = color);
+    document.getElementById('wsNav').style.background = color + 'DD';
+    document.getElementById('wsContact').style.background = color + '22';
+  });
+});
+
+// Publish button
+function showToast(msg) {
+  const t = document.getElementById('publishToast');
+  t.textContent = '⚡ ' + msg;
+  t.style.transform = 'translateY(0)'; t.style.opacity = '1';
+  setTimeout(() => { t.style.transform = 'translateY(80px)'; t.style.opacity = '0'; }, 3000);
+}
+document.getElementById('publishBtn').addEventListener('click', () => showToast('Changes published successfully!'));
+
+// Preview mode buttons
+document.getElementById('previewDesktopBtn')?.addEventListener('click', () => {
+  document.getElementById('editorPreview').style.maxWidth = '';
+  document.getElementById('previewDesktopBtn').classList.add('active');
+  document.getElementById('previewMobileBtn').classList.remove('active');
+});
+document.getElementById('previewMobileBtn')?.addEventListener('click', () => {
+  document.getElementById('previewDesktopBtn').classList.remove('active');
+  document.getElementById('previewMobileBtn').classList.add('active');
+});
+
+// Logout
+document.getElementById('logoutBtn')?.addEventListener('click', () => {
+  localStorage.removeItem('vauxUser');
+  window.location.href = 'signin.html';
+});
+document.getElementById('dashUser')?.addEventListener('click', () => switchSection('settings'));
+</script>
+</body>
+</html>

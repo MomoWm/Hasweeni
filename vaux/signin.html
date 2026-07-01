@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — Vaux</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="auth-page">
+  <!-- Left panel -->
+  <div class="auth-left">
+    <div class="auth-left-logo">
+      <a href="index.html" class="navbar-logo" style="font-size:1.3rem;">
+        <div class="navbar-logo-icon" style="width:32px;height:32px;font-size:1rem;">⚡</div>
+        Vaux
+      </a>
+    </div>
+    <div class="auth-left-content">
+      <h2 class="auth-left-title">Welcome back.<br>Your <span>leads are waiting.</span></h2>
+      <p class="auth-left-desc">Sign in to your Vaux dashboard to view new leads, update your website, and keep your HVAC business growing.</p>
+      <div class="auth-features">
+        <div class="auth-feature"><span class="auth-feature-dot"></span> New lead notifications in real time</div>
+        <div class="auth-feature"><span class="auth-feature-dot"></span> Edit your website in seconds</div>
+        <div class="auth-feature"><span class="auth-feature-dot"></span> View bookings and calendar</div>
+        <div class="auth-feature"><span class="auth-feature-dot"></span> Check your SEO performance</div>
+        <div class="auth-feature"><span class="auth-feature-dot"></span> Download monthly reports</div>
+      </div>
+    </div>
+    <div class="auth-left-footer">© 2025 Vaux. All rights reserved.</div>
+  </div>
+
+  <!-- Right panel (form) -->
+  <div class="auth-right">
+    <div class="auth-form-wrap">
+      <div class="auth-form-header">
+        <h1 class="auth-form-title">Sign in to Vaux</h1>
+        <p class="auth-form-sub">Don't have an account? <a href="signup.html">Start your free trial →</a></p>
+      </div>
+
+      <div class="alert alert-error" id="loginError"></div>
+
+      <form class="auth-form" id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="email">Email address</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="you@yourbusiness.com" autocomplete="email" required>
+          <span class="form-error" id="emailError">Please enter a valid email address.</span>
+        </div>
+
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <label class="form-label" for="password">Password</label>
+            <a href="#" style="font-size:0.8rem;color:var(--primary);">Forgot password?</a>
+          </div>
+          <div class="password-wrap">
+            <input class="form-input" type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+            <button type="button" class="toggle-password" id="togglePw" aria-label="Show password">👁</button>
+          </div>
+          <span class="form-error" id="passwordError">Password is required.</span>
+        </div>
+
+        <label style="display:flex;align-items:center;gap:10px;font-size:0.85rem;color:var(--text-2);cursor:pointer;">
+          <input type="checkbox" id="rememberMe" style="accent-color:var(--primary);">
+          Keep me signed in for 30 days
+        </label>
+
+        <button type="submit" class="btn btn-primary btn-full btn-lg" id="loginBtn">
+          <span id="loginSpinnerText">Sign In</span>
+          <span class="spinner" id="loginSpinner"></span>
+        </button>
+
+        <div class="divider">or continue with</div>
+
+        <button type="button" class="btn btn-outline btn-full" id="googleBtn">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+            <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z" fill="#34A853"/>
+            <path d="M3.964 10.706A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.706V4.962H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.038l3.007-2.332z" fill="#FBBC05"/>
+            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.962L3.964 6.294C4.672 4.167 6.656 3.58 9 3.58z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+      </form>
+
+      <p class="auth-footer-link mt-4">
+        New to Vaux? <a href="signup.html">Create your free account</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+  const loginForm  = document.getElementById('loginForm');
+  const loginBtn   = document.getElementById('loginBtn');
+  const spinner    = document.getElementById('loginSpinner');
+  const btnText    = document.getElementById('loginSpinnerText');
+  const loginError = document.getElementById('loginError');
+  const togglePw   = document.getElementById('togglePw');
+  const pwInput    = document.getElementById('password');
+
+  // Toggle password visibility
+  togglePw.addEventListener('click', () => {
+    const isText = pwInput.type === 'text';
+    pwInput.type = isText ? 'password' : 'text';
+    togglePw.textContent = isText ? '👁' : '🙈';
+  });
+
+  // Google sign-in (demo)
+  document.getElementById('googleBtn').addEventListener('click', () => {
+    simulateLogin({ name: 'Google User', email: 'user@gmail.com', plan: 'pro' });
+  });
+
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    let valid = true;
+
+    const email = document.getElementById('email');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+
+    // Validate email
+    if (!email.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      email.classList.add('error');
+      emailError.classList.add('show');
+      valid = false;
+    } else {
+      email.classList.remove('error');
+      emailError.classList.remove('show');
+    }
+
+    // Validate password
+    if (!pwInput.value) {
+      pwInput.classList.add('error');
+      passwordError.classList.add('show');
+      valid = false;
+    } else {
+      pwInput.classList.remove('error');
+      passwordError.classList.remove('show');
+    }
+
+    if (!valid) return;
+
+    // Simulate login
+    loginBtn.disabled = true;
+    spinner.classList.add('show');
+    btnText.textContent = 'Signing in…';
+    loginError.classList.remove('show');
+
+    setTimeout(() => {
+      // Demo: any credentials work, or show wrong password error
+      const stored = JSON.parse(localStorage.getItem('vauxUser') || 'null');
+      if (stored && stored.email === email.value) {
+        simulateLogin(stored);
+      } else if (email.value && pwInput.value.length >= 6) {
+        // Accept any valid-looking credentials for demo
+        simulateLogin({ name: 'HVAC Business Owner', email: email.value, plan: 'pro', company: 'My HVAC Company' });
+      } else {
+        spinner.classList.remove('show');
+        btnText.textContent = 'Sign In';
+        loginBtn.disabled = false;
+        loginError.textContent = 'Incorrect email or password. Try again or reset your password.';
+        loginError.classList.add('show');
+      }
+    }, 1200);
+  });
+
+  function simulateLogin(user) {
+    localStorage.setItem('vauxUser', JSON.stringify(user));
+    window.location.href = 'dashboard.html';
+  }
+</script>
+</body>
+</html>
