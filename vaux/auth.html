@@ -13,7 +13,7 @@
 <div class="auth-wrap">
   <div class="auth-card">
     <a href="index.html" class="auth-logo">Vaux</a>
-    <p class="auth-subtitle">Build your HVAC business website</p>
+    <p class="auth-subtitle">Professional websites for HVAC businesses</p>
 
     <div class="auth-tabs">
       <div class="auth-tab" id="tabSignin">Sign In</div>
@@ -31,9 +31,12 @@
     <form class="auth-form" id="signupForm" style="display:none;">
       <input type="text" id="signupName" placeholder="Your Full Name" required>
       <input type="text" id="signupBusiness" placeholder="HVAC Business Name" required>
+      <input type="tel" id="signupPhone" placeholder="Business Phone Number" required>
+      <input type="url" id="signupFacebook" placeholder="Facebook Page URL (e.g. facebook.com/yourbiz)" required>
       <input type="email" id="signupEmail" placeholder="Email Address" required>
       <input type="password" id="signupPassword" placeholder="Create a Password" required>
       <select id="signupPlan" required>
+        <option value="" disabled selected>Select a Plan</option>
         <option value="starter">Starter — $29/mo</option>
         <option value="growth">Growth — $59/mo (Most Popular)</option>
         <option value="pro">Pro — $99/mo</option>
@@ -41,7 +44,7 @@
       <button type="submit" class="btn btn-primary btn-block">Create Account</button>
     </form>
 
-    <p class="auth-note">This is a demo sign-in flow — accounts are stored only in your browser, not on a real server.</p>
+    <p class="auth-note">Questions? Email us at <a href="mailto:vauxbuilds@gmail.com" style="color:var(--primary);">vauxbuilds@gmail.com</a></p>
   </div>
 </div>
 

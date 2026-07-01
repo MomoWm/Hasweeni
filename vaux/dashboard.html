@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Build Your Website | Vaux</title>
+<title>Dashboard | Vaux</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -20,7 +20,41 @@
   </div>
 </header>
 
-<section class="dash-body">
+<!-- Admin Panel (shown only to vauxbuilds@gmail.com) -->
+<section class="admin-wrap" id="adminPanel" style="display:none;">
+  <div class="container">
+    <h1 class="admin-title">Admin Dashboard</h1>
+    <p class="admin-sub">Overview of all Vaux customers and revenue — vauxbuilds@gmail.com</p>
+
+    <div class="admin-stats">
+      <div class="stat-card">
+        <div class="stat-val" id="adminTotalCustomers">0</div>
+        <div class="stat-label">Total Customers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="adminMonthlyRevenue">$0</div>
+        <div class="stat-label">Monthly Recurring Revenue</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="adminThisMonth">0</div>
+        <div class="stat-label">New Signups This Month</div>
+      </div>
+    </div>
+
+    <div class="admin-table-wrap">
+      <div class="admin-table-header">
+        <h3>All Customers</h3>
+        <span id="adminTableCount">0 customers</span>
+      </div>
+      <div id="adminTableContainer">
+        <div class="admin-empty">No customers yet. Share your Vaux link to start getting signups.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Build Wizard (shown to regular users) -->
+<section class="dash-body" id="buildPanel" style="display:none;">
   <div class="container dash-grid">
     <div class="dash-form">
       <span class="plan-pill" id="planPill">Starter Plan</span>
@@ -45,7 +79,7 @@
       <button class="btn btn-primary btn-block" id="requestBtn" style="margin-top:28px;">Request My Website</button>
 
       <div class="confirm-box" id="confirmBox">
-        ✅ Got it! Your HVAC website request has been received. Our team will have your live site ready within 24 hours and will reach out at the email you signed up with.
+        Your HVAC website request has been received. Our team will have your live site ready within 24 hours and will reach out at the email you signed up with.
       </div>
     </div>
 

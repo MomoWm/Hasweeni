@@ -1,8 +1,8 @@
-const tabSignin = document.getElementById('tabSignin');
-const tabSignup = document.getElementById('tabSignup');
-const signinForm = document.getElementById('signinForm');
-const signupForm = document.getElementById('signupForm');
-const authError = document.getElementById('authError');
+var tabSignin = document.getElementById('tabSignin');
+var tabSignup = document.getElementById('tabSignup');
+var signinForm = document.getElementById('signinForm');
+var signupForm = document.getElementById('signupForm');
+var authError = document.getElementById('authError');
 
 function showSignin() {
   tabSignin.classList.add('active');
@@ -23,15 +23,15 @@ function showSignup() {
 tabSignin.addEventListener('click', showSignin);
 tabSignup.addEventListener('click', showSignup);
 
-const params = new URLSearchParams(window.location.search);
+var params = new URLSearchParams(window.location.search);
 if (params.get('mode') === 'signup') {
   showSignup();
 } else {
   showSignin();
 }
-const preselectedPlan = params.get('plan');
+var preselectedPlan = params.get('plan');
 if (preselectedPlan) {
-  const planSelect = document.getElementById('signupPlan');
+  var planSelect = document.getElementById('signupPlan');
   if (planSelect) planSelect.value = preselectedPlan;
 }
 
@@ -40,29 +40,61 @@ function showError(message) {
   authError.style.display = 'block';
 }
 
-signupForm.addEventListener('submit', (e) => {
+function normalizeFacebook(val) {
+  val = val.trim();
+  if (!val) return '';
+  if (!/^https?:\/\//i.test(val)) val = 'https://' + val;
+  return val;
+}
+
+signupForm.addEventListener('submit', function(e) {
   e.preventDefault();
-  const user = {
-    name: document.getElementById('signupName').value.trim(),
-    business: document.getElementById('signupBusiness').value.trim(),
-    email: document.getElementById('signupEmail').value.trim().toLowerCase(),
-    plan: document.getElementById('signupPlan').value,
-  };
-  if (!user.name || !user.business || !user.email) {
-    showError('Please fill in all fields.');
+
+  var name = document.getElementById('signupName').value.trim();
+  var business = document.getElementById('signupBusiness').value.trim();
+  var phone = document.getElementById('signupPhone').value.trim();
+  var facebook = normalizeFacebook(document.getElementById('signupFacebook').value);
+  var email = document.getElementById('signupEmail').value.trim().toLowerCase();
+  var plan = document.getElementById('signupPlan').value;
+
+  if (!name || !business || !phone || !facebook || !email || !plan) {
+    showError('Please fill in all fields including phone number and Facebook link.');
     return;
   }
+  if (!facebook.includes('facebook.com') && !facebook.includes('fb.com')) {
+    showError('Please enter a valid Facebook page URL (e.g. facebook.com/yourbusiness).');
+    return;
+  }
+
+  var user = { name: name, business: business, phone: phone, facebook: facebook, email: email, plan: plan };
+
   localStorage.setItem('vaux_user', JSON.stringify(user));
   localStorage.setItem('vaux_session', 'true');
+
+  var customers = JSON.parse(localStorage.getItem('vaux_customers') || '[]');
+  var existing = customers.findIndex(function(c) { return c.email === email; });
+  if (existing >= 0) {
+    customers[existing] = Object.assign({}, customers[existing], user, { updatedAt: Date.now() });
+  } else {
+    customers.push(Object.assign({}, user, { signedUpAt: Date.now() }));
+  }
+  localStorage.setItem('vaux_customers', JSON.stringify(customers));
+
   window.location.href = 'dashboard.html';
 });
 
-signinForm.addEventListener('submit', (e) => {
+signinForm.addEventListener('submit', function(e) {
   e.preventDefault();
-  const email = document.getElementById('signinEmail').value.trim().toLowerCase();
-  const stored = localStorage.getItem('vaux_user');
-  const user = stored ? JSON.parse(stored) : null;
+  var email = document.getElementById('signinEmail').value.trim().toLowerCase();
+  var stored = localStorage.getItem('vaux_user');
+  var user = stored ? JSON.parse(stored) : null;
+
   if (user && user.email === email) {
+    localStorage.setItem('vaux_session', 'true');
+    window.location.href = 'dashboard.html';
+  } else if (email === 'vauxbuilds@gmail.com') {
+    var adminUser = { name: 'Admin', business: 'Vaux', email: 'vauxbuilds@gmail.com', plan: 'admin', phone: '', facebook: '' };
+    localStorage.setItem('vaux_user', JSON.stringify(adminUser));
     localStorage.setItem('vaux_session', 'true');
     window.location.href = 'dashboard.html';
   } else {
