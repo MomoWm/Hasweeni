@@ -184,9 +184,9 @@ a { text-decoration: none; color: inherit; }
 .pricing { padding: 90px 0; background: var(--light-bg); }
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 28px;
-  max-width: 720px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 .pricing-card {
@@ -255,14 +255,14 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 900px) {
   .hero-inner, .why-us-inner, .contact-inner { grid-template-columns: 1fr; }
   .how-grid, .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
   .nav { display: none; }
   .nav-toggle { display: block; }
   .header-cta { display: none; }
-  .how-grid, .portfolio-grid { grid-template-columns: 1fr; }
+  .how-grid, .portfolio-grid, .pricing-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 2rem; }
 
   .nav.open {
