@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Your Account — Vaux</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="auth-page">
+  <!-- Left panel -->
+  <div class="auth-left">
+    <div class="auth-left-logo">
+      <a href="index.html" class="navbar-logo" style="font-size:1.3rem;">
+        <div class="navbar-logo-icon" style="width:32px;height:32px;font-size:1rem;">⚡</div>
+        Vaux
+      </a>
+    </div>
+    <div class="auth-left-content">
+      <h2 class="auth-left-title">Get your HVAC business <span>found online today.</span></h2>
+      <p class="auth-left-desc">Join hundreds of HVAC companies using Vaux to capture more leads, fill their schedule, and grow their business on autopilot.</p>
+      <div class="auth-features">
+        <div class="auth-feature"><span class="auth-feature-dot"></span> 14-day free trial — no credit card needed</div>
+        <div class="auth-feature"><span class="auth-feature-dot"></span> Go live today, same day you sign up</div>
+        <div class="auth-feature"><span class="auth-feature-dot"></span> Mobile-first, HVAC-specific design</div>
+        <div class="auth-feature"><span class="auth-feature-dot"></span> Built-in SEO for "HVAC near me" searches</div>
+        <div class="auth-feature"><span class="auth-feature-dot"></span> Cancel anytime, no contracts</div>
+      </div>
+
+      <!-- Mini testimonial -->
+      <div style="margin-top:36px;padding:20px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;">
+        <div style="color:var(--accent);font-size:0.9rem;margin-bottom:8px;">★★★★★</div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.7);font-style:italic;line-height:1.6;margin-bottom:12px;">"Had my site live in under an hour. Got my first online booking that same evening. Vaux is a no-brainer for any HVAC company."</p>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);">— James T., Thornton Air & Heat</div>
+      </div>
+    </div>
+    <div class="auth-left-footer">© 2025 Vaux. All rights reserved.</div>
+  </div>
+
+  <!-- Right panel (form) -->
+  <div class="auth-right">
+    <div class="auth-form-wrap" style="max-width:460px;">
+      <div class="auth-form-header">
+        <h1 class="auth-form-title">Create your account</h1>
+        <p class="auth-form-sub">Already have an account? <a href="signin.html">Sign in →</a></p>
+      </div>
+
+      <div class="alert alert-error" id="signupError"></div>
+      <div class="alert alert-success" id="signupSuccess"></div>
+
+      <form class="auth-form" id="signupForm" novalidate>
+
+        <!-- Name row -->
+        <div class="auth-form-row">
+          <div class="form-group">
+            <label class="form-label" for="firstName">First name</label>
+            <input class="form-input" type="text" id="firstName" placeholder="Marcus" required autocomplete="given-name">
+            <span class="form-error" id="firstNameError">Required.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lastName">Last name</label>
+            <input class="form-input" type="text" id="lastName" placeholder="Rivera" required autocomplete="family-name">
+            <span class="form-error" id="lastNameError">Required.</span>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div class="form-group">
+          <label class="form-label" for="company">HVAC company name</label>
+          <input class="form-input" type="text" id="company" placeholder="Arctic Air HVAC" required autocomplete="organization">
+          <span class="form-error" id="companyError">Please enter your company name.</span>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="signupEmail">Work email</label>
+          <input class="form-input" type="email" id="signupEmail" placeholder="you@yourhvaccompany.com" required autocomplete="email">
+          <span class="form-error" id="signupEmailError">Please enter a valid email address.</span>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+          <label class="form-label" for="phone">Business phone</label>
+          <input class="form-input" type="tel" id="phone" placeholder="(214) 555-0100" autocomplete="tel">
+          <span class="form-hint">Customers will see this on your website</span>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label class="form-label" for="signupPassword">Create a password</label>
+          <div class="password-wrap">
+            <input class="form-input" type="password" id="signupPassword" placeholder="Min. 8 characters" required autocomplete="new-password">
+            <button type="button" class="toggle-password" id="toggleSignupPw" aria-label="Show password">👁</button>
+          </div>
+          <span class="form-error" id="signupPasswordError">Password must be at least 8 characters.</span>
+        </div>
+
+        <!-- Plan selection -->
+        <div class="form-group">
+          <label class="form-label">Choose your plan <span style="color:var(--text-3);font-weight:400;">(14-day free trial on all plans)</span></label>
+          <div class="plan-picker" id="planPicker">
+            <input type="radio" name="plan" id="plan-starter" value="starter" class="plan-option">
+            <label for="plan-starter" class="plan-label">
+              <span class="plan-label-name">Starter</span>
+              <span class="plan-label-price">$49/mo</span>
+            </label>
+
+            <input type="radio" name="plan" id="plan-pro" value="pro" class="plan-option" checked>
+            <label for="plan-pro" class="plan-label">
+              <span class="plan-label-name">Pro <span class="plan-label-popular">Most Popular</span></span>
+              <span class="plan-label-price">$129/mo</span>
+            </label>
+
+            <input type="radio" name="plan" id="plan-elite" value="elite" class="plan-option">
+            <label for="plan-elite" class="plan-label">
+              <span class="plan-label-name">Elite</span>
+              <span class="plan-label-price">$299/mo</span>
+            </label>
+          </div>
+          <span class="form-error" id="planError">Please select a plan.</span>
+        </div>
+
+        <!-- Terms -->
+        <label class="terms-row">
+          <input type="checkbox" id="terms" required>
+          <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I understand I'll start a 14-day free trial and won't be charged until the trial ends.</span>
+        </label>
+        <span class="form-error" id="termsError">You must agree to continue.</span>
+
+        <button type="submit" class="btn btn-accent btn-full btn-lg" id="signupBtn">
+          <span id="signupBtnText">Start My Free Trial</span>
+          <span class="spinner" id="signupSpinner"></span>
+        </button>
+      </form>
+
+      <p class="auth-footer-link mt-4">
+        Already have an account? <a href="signin.html">Sign in</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+  // Pre-select plan from URL param
+  const urlPlan = new URLSearchParams(window.location.search).get('plan');
+  if (urlPlan && document.getElementById('plan-' + urlPlan)) {
+    document.getElementById('plan-' + urlPlan).checked = true;
+  }
+
+  // Password toggle
+  const toggleSignupPw = document.getElementById('toggleSignupPw');
+  const signupPwInput  = document.getElementById('signupPassword');
+  toggleSignupPw.addEventListener('click', () => {
+    const isText = signupPwInput.type === 'text';
+    signupPwInput.type = isText ? 'password' : 'text';
+    toggleSignupPw.textContent = isText ? '👁' : '🙈';
+  });
+
+  // Form submit
+  const signupForm    = document.getElementById('signupForm');
+  const signupBtn     = document.getElementById('signupBtn');
+  const signupSpinner = document.getElementById('signupSpinner');
+  const signupBtnText = document.getElementById('signupBtnText');
+  const signupError   = document.getElementById('signupError');
+  const signupSuccess = document.getElementById('signupSuccess');
+
+  signupForm.addEventListener('submit', e => {
+    e.preventDefault();
+    let valid = true;
+
+    const fields = [
+      { id: 'firstName',     errId: 'firstNameError',     check: v => v.trim().length > 0 },
+      { id: 'lastName',      errId: 'lastNameError',      check: v => v.trim().length > 0 },
+      { id: 'company',       errId: 'companyError',       check: v => v.trim().length > 0 },
+      { id: 'signupEmail',   errId: 'signupEmailError',   check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+      { id: 'signupPassword',errId: 'signupPasswordError',check: v => v.length >= 8 },
+    ];
+
+    fields.forEach(({ id, errId, check }) => {
+      const el = document.getElementById(id);
+      const err = document.getElementById(errId);
+      if (!check(el.value)) {
+        el.classList.add('error'); err.classList.add('show'); valid = false;
+      } else {
+        el.classList.remove('error'); err.classList.remove('show');
+      }
+    });
+
+    const termsEl  = document.getElementById('terms');
+    const termsErr = document.getElementById('termsError');
+    if (!termsEl.checked) {
+      termsErr.classList.add('show'); valid = false;
+    } else {
+      termsErr.classList.remove('show');
+    }
+
+    const planEl  = document.getElementById('planError');
+    const planVal = document.querySelector('input[name="plan"]:checked');
+    if (!planVal) {
+      planEl.classList.add('show'); valid = false;
+    } else {
+      planEl.classList.remove('show');
+    }
+
+    if (!valid) return;
+
+    // Simulate account creation
+    signupBtn.disabled = true;
+    signupSpinner.classList.add('show');
+    signupBtnText.textContent = 'Creating your account…';
+    signupError.classList.remove('show');
+
+    const userData = {
+      firstName: document.getElementById('firstName').value.trim(),
+      lastName:  document.getElementById('lastName').value.trim(),
+      name:      document.getElementById('firstName').value.trim() + ' ' + document.getElementById('lastName').value.trim(),
+      company:   document.getElementById('company').value.trim(),
+      email:     document.getElementById('signupEmail').value.trim(),
+      phone:     document.getElementById('phone').value.trim(),
+      plan:      planVal.value,
+      joinedAt:  new Date().toISOString(),
+    };
+
+    setTimeout(() => {
+      localStorage.setItem('vauxUser', JSON.stringify(userData));
+      window.location.href = 'dashboard.html';
+    }, 1500);
+  });
+
+  // Clear error on field input
+  document.querySelectorAll('.form-input').forEach(input => {
+    input.addEventListener('input', () => {
+      input.classList.remove('error');
+      const errEl = document.getElementById(input.id + 'Error') || document.getElementById('signup' + input.id.charAt(0).toUpperCase() + input.id.slice(1) + 'Error');
+      if (errEl) errEl.classList.remove('show');
+    });
+  });
+</script>
+</body>
+</html>
