@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Website | Vaux</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="dash-header">
+  <div class="container dash-header-inner">
+    <a href="index.html" class="logo">Vaux</a>
+    <div>
+      <span id="welcomeText" class="auth-note" style="margin:0;"></span>
+      <a href="#" id="logoutLink" class="btn btn-ghost" style="margin-left:16px;">Log Out</a>
+    </div>
+  </div>
+</header>
+
+<section class="dash-body">
+  <div class="container dash-grid">
+    <div class="dash-form">
+      <span class="plan-pill" id="planPill">Starter Plan</span>
+      <h2>Build Your Website</h2>
+      <p class="sub">Fill this in and watch your site update live on the right.</p>
+
+      <label for="fBusinessName">Business Name</label>
+      <input type="text" id="fBusinessName" placeholder="e.g. Summit Heating & Air">
+
+      <label for="fPhone">Phone Number</label>
+      <input type="text" id="fPhone" placeholder="e.g. (918) 555-0134">
+
+      <label for="fCity">City</label>
+      <input type="text" id="fCity" placeholder="e.g. Tulsa">
+
+      <label for="fState">State</label>
+      <input type="text" id="fState" placeholder="e.g. OK">
+
+      <label for="fYears">Years in Business</label>
+      <input type="text" id="fYears" placeholder="e.g. 10">
+
+      <button class="btn btn-primary btn-block" id="requestBtn" style="margin-top:28px;">Request My Website</button>
+
+      <div class="confirm-box" id="confirmBox">
+        ✅ Got it! Your HVAC website request has been received. Our team will have your live site ready within 24 hours and will reach out at the email you signed up with.
+      </div>
+    </div>
+
+    <div class="preview-wrap">
+      <div class="preview-toolbar">
+        <div class="preview-dot"></div>
+        <div class="preview-dot"></div>
+        <div class="preview-dot"></div>
+      </div>
+      <iframe class="preview-frame" id="previewFrame" style="width:100%; border:none;" title="Website preview"></iframe>
+    </div>
+  </div>
+</section>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
