@@ -23,7 +23,7 @@ if (user.email === 'vauxbuilds@gmail.com') {
 
 function loadAdminPanel() {
   var customers = JSON.parse(localStorage.getItem('vaux_customers') || '[]');
-  var planPrices = { starter: 29, growth: 59, pro: 99 };
+  var planPrices = { starter: 800, growth: 1500, pro: 2500 };
 
   var totalCustomers = customers.length;
   var totalRevenue = customers.reduce(function(sum, c) { return sum + (planPrices[c.plan] || 0); }, 0);
@@ -44,7 +44,7 @@ function loadAdminPanel() {
 
   var rows = customers.map(function(c) {
     var planClass = c.plan || 'starter';
-    var planLabel = { starter: 'Starter', growth: 'Growth', pro: 'Pro' }[c.plan] || c.plan;
+    var planLabel = { starter: 'Basic', growth: 'Standard', pro: 'Premium' }[c.plan] || c.plan;
     var signedUp = c.signedUpAt ? new Date(c.signedUpAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—';
     var fbLink = c.facebook ? '<a class="admin-link" href="' + escAttr(c.facebook) + '" target="_blank">View Page</a>' : '—';
     return '<tr>'
@@ -80,7 +80,7 @@ function escAttr(str) {
 
 // ---- Build Wizard ----
 function loadBuildWizard() {
-  var planNames = { starter: 'Starter Plan', growth: 'Growth Plan', pro: 'Pro Plan' };
+  var planNames = { starter: 'Basic Plan', growth: 'Standard Plan', pro: 'Premium Plan' };
   document.getElementById('planPill').textContent = planNames[user.plan] || 'Starter Plan';
 
   var fBusinessName = document.getElementById('fBusinessName');
